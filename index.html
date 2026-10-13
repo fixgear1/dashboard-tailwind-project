@@ -1,0 +1,1344 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full bg-slate-50 text-slate-800 antialiased">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CreatorSync | Influencer Ad & Conversion Performance Dashboard</title>
+  
+  <!-- Tailwind CSS v4 CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  
+  <!-- Custom Styles for complementary breakpoint tweaks -->
+  <link rel="stylesheet" href="styles.css">
+  
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+  </style>
+</head>
+<body class="min-h-full bg-slate-50 text-slate-800 flex flex-col selection:bg-indigo-500 selection:text-white">
+
+  <!-- ========================================================= -->
+  <!-- TOP HEADER / APP BAR                                      -->
+  <!-- ========================================================= -->
+  <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 sm:h-20">
+        
+        <!-- Brand & Influencer Profile -->
+        <div class="flex items-center space-x-3 sm:space-x-4">
+          <div class="relative">
+            <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gradient-to-tr from-pink-500 via-purple-500 to-indigo-500 p-0.5 shadow-md">
+              <div class="w-full h-full bg-slate-900 rounded-full flex items-center justify-center text-white font-bold text-sm sm:text-base">
+                SV
+              </div>
+            </div>
+            <span class="absolute bottom-0 right-0 w-3 h-3 bg-emerald-500 border-2 border-white rounded-full"></span>
+          </div>
+
+          <div>
+            <div class="flex items-center space-x-2">
+              <h1 class="text-base sm:text-xl font-extrabold text-slate-900 tracking-tight dashboard-header-title">
+                Sofia Valente <span class="text-xs font-semibold px-2 py-0.5 rounded-full bg-indigo-50 text-indigo-700 border border-indigo-200/60 hidden sm:inline-block">@sofia.creates</span>
+              </h1>
+              <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-emerald-100 text-emerald-800">
+                <svg class="w-3 h-3 mr-1 text-emerald-600" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                </svg>
+                Verified Partner
+              </span>
+            </div>
+            <p class="text-xs text-slate-500 hidden sm:block">Consolidated Multi-Platform Ad Impact & Affiliate Conversion Intelligence</p>
+          </div>
+        </div>
+
+        <!-- Controls: Time Range, Currency & Actions -->
+        <div class="flex items-center space-x-2 sm:space-x-3">
+          <!-- Commission Rate Badge -->
+          <div class="hidden md:flex items-center bg-amber-50 border border-amber-200 text-amber-800 px-3 py-1.5 rounded-lg text-xs font-semibold">
+            <span class="w-2 h-2 bg-amber-500 rounded-full mr-2 animate-ping"></span>
+            15% Fixed Commission Model
+          </div>
+
+          <!-- Date Picker Pill -->
+          <div class="flex items-center bg-slate-100 rounded-lg p-1 border border-slate-200">
+            <button class="px-2.5 py-1 text-xs font-semibold rounded-md bg-white text-slate-900 shadow-xs">Last 30 Days</button>
+            <button class="px-2.5 py-1 text-xs font-medium text-slate-600 hover:text-slate-900 hidden sm:block">Q3 2026</button>
+            <button class="px-2.5 py-1 text-xs font-medium text-slate-600 hover:text-slate-900 hidden sm:block">Year to Date</button>
+          </div>
+
+          <!-- Export Action -->
+          <button onclick="window.print()" class="inline-flex items-center px-3 py-1.5 text-xs font-medium rounded-lg text-slate-700 bg-white border border-slate-300 shadow-xs hover:bg-slate-50 transition no-print">
+            <svg class="w-3.5 h-3.5 mr-1.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+            </svg>
+            <span class="hidden sm:inline">Export</span> Report
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================================= -->
+  <!-- MAIN WRAPPER CONTAINER                                    -->
+  <!-- ========================================================= -->
+  <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 space-y-8 sm:space-y-10">
+
+    <!-- EXECUTIVE QUICK-DECISION ANSWERS CARD -->
+    <!-- Direct, high-impact answers to the influencer's core questions -->
+    <section class="bg-gradient-to-br from-indigo-900 via-slate-900 to-purple-950 text-white rounded-2xl p-5 sm:p-7 shadow-xl border border-indigo-800/40 relative overflow-hidden">
+      <!-- Decorative background blur -->
+      <div class="absolute -right-10 -bottom-10 w-64 h-64 bg-indigo-600/20 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="absolute -left-10 -top-10 w-64 h-64 bg-fuchsia-600/20 rounded-full blur-3xl pointer-events-none"></div>
+      
+      <div class="relative z-10">
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between pb-4 mb-4 border-b border-indigo-700/50 gap-2">
+          <div>
+            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-indigo-500/30 text-indigo-200 border border-indigo-400/30">
+              ⚡ Executive Decision Matrix
+            </span>
+            <h2 class="text-lg sm:text-xl font-bold tracking-tight text-white mt-1">
+              Consolidated Performance Overview
+            </h2>
+          </div>
+          <div class="text-xs text-indigo-300">
+            Reporting cycle: Oct 1 – Oct 30, 2026 • 3 Active Platforms (IG, TikTok, YT)
+          </div>
+        </div>
+
+        <!-- 5 Core Influencer Questions Answered Immediately -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+          
+          <!-- Q1 -->
+          <div class="bg-white/10 hover:bg-white/15 transition rounded-xl p-3.5 border border-white/10">
+            <span class="text-xs font-medium text-indigo-300 block mb-1">💰 Total Commissions</span>
+            <div class="text-xl sm:text-2xl font-extrabold text-white">€8,070</div>
+            <p class="text-xs text-emerald-400 mt-1 flex items-center font-medium">
+              <svg class="w-3.5 h-3.5 mr-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+              +18.4% vs last mo.
+            </p>
+            <span class="text-[11px] text-slate-300 block mt-1">15% cut on €53.8k total sales</span>
+          </div>
+
+          <!-- Q2 -->
+          <div class="bg-white/10 hover:bg-white/15 transition rounded-xl p-3.5 border border-white/10">
+            <span class="text-xs font-medium text-indigo-300 block mb-1">🏆 Top Revenue Product</span>
+            <div class="text-xl sm:text-2xl font-extrabold text-amber-300">Product B (€120)</div>
+            <p class="text-xs text-slate-200 mt-1 font-semibold">
+              €21,000 gross (€3,150 comm.)
+            </p>
+            <span class="text-[11px] text-slate-300 block mt-1">175 units sold (39% of revenue)</span>
+          </div>
+
+          <!-- Q3 -->
+          <div class="bg-white/10 hover:bg-white/15 transition rounded-xl p-3.5 border border-white/10">
+            <span class="text-xs font-medium text-indigo-300 block mb-1">🎯 Ad Conversion Rate</span>
+            <div class="text-xl sm:text-2xl font-extrabold text-white">3.87%</div>
+            <p class="text-xs text-emerald-400 mt-1 font-medium">
+              705 sales / 18,200 clicks
+            </p>
+            <span class="text-[11px] text-slate-300 block mt-1">0.35% conv. on 201k total reach</span>
+          </div>
+
+          <!-- Q4 -->
+          <div class="bg-white/10 hover:bg-white/15 transition rounded-xl p-3.5 border border-white/10">
+            <span class="text-xs font-medium text-indigo-300 block mb-1">🚀 Best Return Platform</span>
+            <div class="text-xl sm:text-2xl font-extrabold text-cyan-300">TikTok</div>
+            <p class="text-xs text-cyan-300 mt-1 font-semibold">
+              9.5x Comm. Return (ROAS)
+            </p>
+            <span class="text-[11px] text-slate-300 block mt-1">€2,385 comm. on €250 cost</span>
+          </div>
+
+          <!-- Q5 -->
+          <div class="bg-white/10 hover:bg-white/15 transition rounded-xl p-3.5 border border-white/10 sm:col-span-2 lg:col-span-1">
+            <span class="text-xs font-medium text-indigo-300 block mb-1">💬 Top Engagement Rate</span>
+            <div class="text-xl sm:text-2xl font-extrabold text-pink-300">TikTok 7.2%</div>
+            <p class="text-xs text-slate-200 mt-1 font-medium">
+              IG: 5.4% • YouTube: 4.1%
+            </p>
+            <span class="text-[11px] text-slate-300 block mt-1">Product A led with 6.8% engagement</span>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================= -->
+    <!-- 1️⃣ TOP BLOCK: MAIN OUTCOME INDICATORS (KPIs)             -->
+    <!-- Volume, Revenue, Engagement, Performance, Efficiency     -->
+    <!-- ========================================================= -->
+    <section aria-labelledby="kpi-heading" class="space-y-4">
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
+        <div class="flex items-center space-x-2">
+          <span class="w-7 h-7 rounded-lg bg-indigo-600 text-white flex items-center justify-center font-bold text-xs shadow-sm">1️⃣</span>
+          <div>
+            <h2 id="kpi-heading" class="text-lg sm:text-xl font-bold text-slate-900">
+              Top Block: Main Outcome Indicators (KPIs)
+            </h2>
+            <p class="text-xs text-slate-500">Consolidated high-level metrics across all brand partnerships & channels</p>
+          </div>
+        </div>
+        <span class="text-xs font-medium text-slate-400 bg-slate-100 px-2.5 py-1 rounded-full self-start sm:self-center">
+          Updated 15 mins ago
+        </span>
+      </div>
+
+      <!-- KPI Primary Cards Grid (Responsive: 1 col on mobile, 2 on tablet, 4 on desktop) -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
+        
+        <!-- KPI 1: Revenue & Commissions (Primary Financial Outcome) -->
+        <div class="bg-white rounded-xl p-5 border border-slate-200/80 shadow-xs hover:shadow-md transition-shadow">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-semibold uppercase tracking-wider text-slate-500">Influencer Commission</span>
+            <span class="p-2 rounded-lg bg-emerald-50 text-emerald-600">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+            </span>
+          </div>
+
+          <div class="mt-3">
+            <div class="flex items-baseline space-x-2">
+              <span class="text-2xl sm:text-3xl font-extrabold text-slate-900 metric-value">€8,070.00</span>
+              <span class="inline-flex items-center text-xs font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full">
+                ↑ 18.4%
+              </span>
+            </div>
+            <p class="text-xs text-slate-500 mt-1">
+              Fixed <span class="font-semibold text-slate-700">15.0%</span> cut on €53,800 total brand sales
+            </p>
+          </div>
+
+          <!-- Progress Bar to €10k Monthly Target -->
+          <div class="mt-4 pt-3 border-t border-slate-100">
+            <div class="flex justify-between text-xs mb-1">
+              <span class="text-slate-500">Monthly Target: €10,000</span>
+              <span class="font-semibold text-indigo-600">80.7%</span>
+            </div>
+            <div class="w-full h-2 bg-slate-100 rounded-full overflow-hidden">
+              <div class="h-full bg-gradient-to-r from-indigo-500 to-emerald-500 rounded-full" style="width: 80.7%"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- KPI 2: Gross Brand Revenue & Sales Volume -->
+        <div class="bg-white rounded-xl p-5 border border-slate-200/80 shadow-xs hover:shadow-md transition-shadow">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-semibold uppercase tracking-wider text-slate-500">Gross Sales Generated</span>
+            <span class="p-2 rounded-lg bg-indigo-50 text-indigo-600">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
+              </svg>
+            </span>
+          </div>
+
+          <div class="mt-3">
+            <div class="flex items-baseline space-x-2">
+              <span class="text-2xl sm:text-3xl font-extrabold text-slate-900 metric-value">€53,800.00</span>
+              <span class="inline-flex items-center text-xs font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full">
+                ↑ 22.1%
+              </span>
+            </div>
+            <p class="text-xs text-slate-500 mt-1">
+              Total sales volume: <span class="font-semibold text-slate-700">705 units</span> sold
+            </p>
+          </div>
+
+          <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
+            <span>Avg Order Value (AOV): <strong class="text-slate-700">€76.31</strong></span>
+            <span class="text-indigo-600 font-medium">3 Promoted SKUs</span>
+          </div>
+        </div>
+
+        <!-- KPI 3: Ad Conversion Performance (Conversions / Clicks & Reach) -->
+        <div class="bg-white rounded-xl p-5 border border-slate-200/80 shadow-xs hover:shadow-md transition-shadow">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-semibold uppercase tracking-wider text-slate-500">Ad Conversion Rate</span>
+            <span class="p-2 rounded-lg bg-purple-50 text-purple-600">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+              </svg>
+            </span>
+          </div>
+
+          <div class="mt-3">
+            <div class="flex items-baseline space-x-2">
+              <span class="text-2xl sm:text-3xl font-extrabold text-slate-900 metric-value">3.87%</span>
+              <span class="inline-flex items-center text-xs font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full">
+                ↑ 0.6%
+              </span>
+            </div>
+            <p class="text-xs text-slate-500 mt-1">
+              Click-to-sale conversion (705 / 18,200 clicks)
+            </p>
+          </div>
+
+          <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
+            <span>Reach-to-Sale: <strong class="text-slate-700">0.35%</strong></span>
+            <span class="text-purple-600 font-medium">CTR: 9.05%</span>
+          </div>
+        </div>
+
+        <!-- KPI 4: Audience Reach & Volume -->
+        <div class="bg-white rounded-xl p-5 border border-slate-200/80 shadow-xs hover:shadow-md transition-shadow">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-semibold uppercase tracking-wider text-slate-500">Unique Ad Reach</span>
+            <span class="p-2 rounded-lg bg-pink-50 text-pink-600">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+              </svg>
+            </span>
+          </div>
+
+          <div class="mt-3">
+            <div class="flex items-baseline space-x-2">
+              <span class="text-2xl sm:text-3xl font-extrabold text-slate-900 metric-value">201,000</span>
+              <span class="inline-flex items-center text-xs font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full">
+                ↑ 14.2%
+              </span>
+            </div>
+            <p class="text-xs text-slate-500 mt-1">
+              Total impressions: <span class="font-semibold text-slate-700">942,000</span> (freq 4.68x)
+            </p>
+          </div>
+
+          <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
+            <span>Overall Engagement: <strong class="text-slate-700">5.9%</strong></span>
+            <span class="text-pink-600 font-medium">38 Posts/Stories</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Secondary Efficiency & Quality Sub-metrics Row (Tablets & Desktop) -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 bg-white p-3.5 rounded-xl border border-slate-200/70 text-xs">
+        <div class="flex items-center space-x-2 px-2 border-r border-slate-100 last:border-none">
+          <div class="w-2 h-2 rounded-full bg-emerald-500"></div>
+          <div>
+            <span class="text-slate-400 block text-[11px]">Avg Commission / Sale</span>
+            <span class="font-bold text-slate-800 text-sm">€11.45</span>
+          </div>
+        </div>
+        <div class="flex items-center space-x-2 px-2 border-r border-slate-100 last:border-none">
+          <div class="w-2 h-2 rounded-full bg-indigo-500"></div>
+          <div>
+            <span class="text-slate-400 block text-[11px]">Production & Ad Cost</span>
+            <span class="font-bold text-slate-800 text-sm">€1,000.00</span>
+          </div>
+        </div>
+        <div class="flex items-center space-x-2 px-2 border-r border-slate-100 last:border-none">
+          <div class="w-2 h-2 rounded-full bg-cyan-500"></div>
+          <div>
+            <span class="text-slate-400 block text-[11px]">Net Influencer Profit</span>
+            <span class="font-bold text-slate-800 text-sm">€7,070.00 <span class="text-emerald-600 font-semibold">(87.6%)</span></span>
+          </div>
+        </div>
+        <div class="flex items-center space-x-2 px-2">
+          <div class="w-2 h-2 rounded-full bg-amber-500"></div>
+          <div>
+            <span class="text-slate-400 block text-[11px]">Audience Loyalty (NPS)</span>
+            <span class="font-bold text-slate-800 text-sm">78 / 100 <span class="text-emerald-600 font-semibold">(+4)</span></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================= -->
+    <!-- 2️⃣ MIDDLE BLOCK: "DRIVERS"                               -->
+    <!-- Explanatory factors behind outcomes                       -->
+    <!-- ========================================================= -->
+    <section aria-labelledby="drivers-heading" class="space-y-6">
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
+        <div class="flex items-center space-x-2">
+          <span class="w-7 h-7 rounded-lg bg-purple-600 text-white flex items-center justify-center font-bold text-xs shadow-sm">2️⃣</span>
+          <div>
+            <h2 id="drivers-heading" class="text-lg sm:text-xl font-bold text-slate-900">
+              Middle Block: "Drivers" (What Explains the Outcome)
+            </h2>
+            <p class="text-xs text-slate-500">Deep-dive breakdown by sales funnel stage, social platform, product economics, and content activity</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Grid of Drivers: 2x2 on desktop, stacked on mobile/tablet -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+
+        <!-- DRIVER 1: CONVERSION BY STAGE / SALES FUNNEL (lg:col-span-6) -->
+        <div class="lg:col-span-6 bg-white rounded-xl p-5 sm:p-6 border border-slate-200/80 shadow-xs flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between pb-3 mb-4 border-b border-slate-100">
+              <div>
+                <h3 class="font-bold text-slate-900 text-base flex items-center">
+                  <svg class="w-4 h-4 mr-2 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"/>
+                  </svg>
+                  Driver 1: Conversion by Stage (Sales Funnel)
+                </h3>
+                <p class="text-xs text-slate-500 mt-0.5">Tracking user journey from initial ad view to completed purchase</p>
+              </div>
+              <span class="text-xs font-semibold px-2 py-1 bg-indigo-50 text-indigo-700 rounded-md">
+                Funnel Velocity
+              </span>
+            </div>
+
+            <!-- Funnel Visual Steps -->
+            <div class="space-y-3.5">
+              
+              <!-- Stage 1 -->
+              <div>
+                <div class="flex justify-between text-xs mb-1 font-medium">
+                  <span class="text-slate-700">1. Total Ad Impressions</span>
+                  <span class="text-slate-900 font-bold">942,000 <span class="text-slate-400 font-normal">(100%)</span></span>
+                </div>
+                <div class="w-full bg-slate-100 rounded-lg h-3 overflow-hidden">
+                  <div class="bg-indigo-600 h-full rounded-lg" style="width: 100%"></div>
+                </div>
+              </div>
+
+              <!-- Stage 2 -->
+              <div>
+                <div class="flex justify-between text-xs mb-1 font-medium">
+                  <span class="text-slate-700">2. Unique Audience Reach</span>
+                  <span class="text-slate-900 font-bold">201,000 <span class="text-indigo-600 font-semibold">(21.3% view rate)</span></span>
+                </div>
+                <div class="w-full bg-slate-100 rounded-lg h-3 overflow-hidden">
+                  <div class="bg-indigo-500 h-full rounded-lg" style="width: 78%"></div>
+                </div>
+              </div>
+
+              <!-- Stage 3 -->
+              <div>
+                <div class="flex justify-between text-xs mb-1 font-medium">
+                  <span class="text-slate-700">3. Link Clicks / Bio Taps (CTR)</span>
+                  <span class="text-slate-900 font-bold">18,200 <span class="text-indigo-600 font-semibold">(9.05% of reach)</span></span>
+                </div>
+                <div class="w-full bg-slate-100 rounded-lg h-3 overflow-hidden">
+                  <div class="bg-indigo-400 h-full rounded-lg" style="width: 52%"></div>
+                </div>
+              </div>
+
+              <!-- Stage 4 -->
+              <div>
+                <div class="flex justify-between text-xs mb-1 font-medium">
+                  <span class="text-slate-700">4. Add to Cart / Initiated Checkout</span>
+                  <span class="text-slate-900 font-bold">2,180 <span class="text-indigo-600 font-semibold">(12.0% cart rate)</span></span>
+                </div>
+                <div class="w-full bg-slate-100 rounded-lg h-3 overflow-hidden">
+                  <div class="bg-indigo-300 h-full rounded-lg" style="width: 32%"></div>
+                </div>
+              </div>
+
+              <!-- Stage 5 -->
+              <div>
+                <div class="flex justify-between text-xs mb-1 font-medium">
+                  <span class="text-slate-700 font-bold text-emerald-800">5. Completed Sales & Commission Triggered</span>
+                  <span class="text-emerald-700 font-extrabold">705 Sales <span class="text-emerald-600 font-semibold">(32.3% checkout close)</span></span>
+                </div>
+                <div class="w-full bg-slate-100 rounded-lg h-3.5 overflow-hidden ring-2 ring-emerald-400/40">
+                  <div class="bg-gradient-to-r from-emerald-500 to-teal-400 h-full rounded-lg" style="width: 18%"></div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Funnel Key Insight Callout -->
+          <div class="mt-4 p-3 bg-indigo-50/70 border border-indigo-100 rounded-lg text-xs text-indigo-900 flex items-start space-x-2">
+            <span class="text-indigo-600 font-bold">💡 Funnel Driver:</span>
+            <span>The checkout close rate is strong at <strong>32.3%</strong>. The highest friction drop occurs between Link Clicks and Add-to-Cart (88% drop-off). Recommending pre-selected bundle landing pages to boost cart conversions.</span>
+          </div>
+        </div>
+
+        <!-- DRIVER 2: PERFORMANCE BY PLATFORM (lg:col-span-6) -->
+        <div class="lg:col-span-6 bg-white rounded-xl p-5 sm:p-6 border border-slate-200/80 shadow-xs flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between pb-3 mb-4 border-b border-slate-100">
+              <div>
+                <h3 class="font-bold text-slate-900 text-base flex items-center">
+                  <svg class="w-4 h-4 mr-2 text-pink-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                  </svg>
+                  Driver 2: Performance by Platform (ROI & Channels)
+                </h3>
+                <p class="text-xs text-slate-500 mt-0.5">Where the audience converts best and which yields highest return</p>
+              </div>
+              <span class="text-xs font-semibold px-2 py-1 bg-pink-50 text-pink-700 rounded-md">
+                Multi-Channel
+              </span>
+            </div>
+
+            <!-- 3 Platform Breakdown Cards -->
+            <div class="space-y-3">
+              
+              <!-- Instagram -->
+              <div class="p-3.5 rounded-lg border border-slate-200/80 hover:border-pink-300 transition-colors bg-gradient-to-r from-pink-50/20 via-purple-50/10 to-transparent">
+                <div class="flex items-center justify-between mb-2">
+                  <div class="flex items-center space-x-2">
+                    <span class="w-6 h-6 rounded-md bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-600 text-white flex items-center justify-center text-xs font-bold shadow-xs">IG</span>
+                    <span class="font-bold text-slate-900 text-sm">Instagram</span>
+                    <span class="text-[11px] font-medium text-slate-500">(14 Stories, 6 Reels)</span>
+                  </div>
+                  <span class="text-xs font-bold text-slate-900">€3,930 Comm. <span class="text-slate-400 font-normal">(48.7%)</span></span>
+                </div>
+
+                <div class="grid grid-cols-3 gap-2 text-xs text-slate-600">
+                  <div class="bg-white p-2 rounded border border-slate-100">
+                    <span class="text-slate-400 block text-[10px]">Reach / Clicks</span>
+                    <span class="font-semibold text-slate-800">95k / 8,450</span>
+                  </div>
+                  <div class="bg-white p-2 rounded border border-slate-100">
+                    <span class="text-slate-400 block text-[10px]">Engagement Rate</span>
+                    <span class="font-semibold text-pink-600">5.4%</span>
+                  </div>
+                  <div class="bg-white p-2 rounded border border-slate-100">
+                    <span class="text-slate-400 block text-[10px]">Net Return Multiple</span>
+                    <span class="font-semibold text-emerald-600">8.7x ROAS</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- TikTok -->
+              <div class="p-3.5 rounded-lg border border-slate-200/80 hover:border-slate-400 transition-colors bg-gradient-to-r from-cyan-50/20 via-slate-50/40 to-transparent">
+                <div class="flex items-center justify-between mb-2">
+                  <div class="flex items-center space-x-2">
+                    <span class="w-6 h-6 rounded-md bg-black text-cyan-400 flex items-center justify-center text-xs font-bold shadow-xs">TT</span>
+                    <span class="font-bold text-slate-900 text-sm">TikTok</span>
+                    <span class="inline-flex items-center text-[10px] font-semibold bg-emerald-100 text-emerald-800 px-1.5 py-0.5 rounded">Highest ROAS</span>
+                  </div>
+                  <span class="text-xs font-bold text-slate-900">€2,385 Comm. <span class="text-slate-400 font-normal">(29.6%)</span></span>
+                </div>
+
+                <div class="grid grid-cols-3 gap-2 text-xs text-slate-600">
+                  <div class="bg-white p-2 rounded border border-slate-100">
+                    <span class="text-slate-400 block text-[10px]">Reach / Clicks</span>
+                    <span class="font-semibold text-slate-800">76k / 6,100</span>
+                  </div>
+                  <div class="bg-white p-2 rounded border border-slate-100">
+                    <span class="text-slate-400 block text-[10px]">Engagement Rate</span>
+                    <span class="font-semibold text-cyan-600">7.2% (Top!)</span>
+                  </div>
+                  <div class="bg-white p-2 rounded border border-slate-100">
+                    <span class="text-slate-400 block text-[10px]">Net Return Multiple</span>
+                    <span class="font-semibold text-emerald-600">9.5x ROAS</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- YouTube -->
+              <div class="p-3.5 rounded-lg border border-slate-200/80 hover:border-red-300 transition-colors bg-gradient-to-r from-red-50/20 via-slate-50/30 to-transparent">
+                <div class="flex items-center justify-between mb-2">
+                  <div class="flex items-center space-x-2">
+                    <span class="w-6 h-6 rounded-md bg-red-600 text-white flex items-center justify-center text-xs font-bold shadow-xs">YT</span>
+                    <span class="font-bold text-slate-900 text-sm">YouTube</span>
+                    <span class="text-[11px] font-medium text-slate-500">(2 Integrations, 4 Shorts)</span>
+                  </div>
+                  <span class="text-xs font-bold text-slate-900">€1,755 Comm. <span class="text-slate-400 font-normal">(21.7%)</span></span>
+                </div>
+
+                <div class="grid grid-cols-3 gap-2 text-xs text-slate-600">
+                  <div class="bg-white p-2 rounded border border-slate-100">
+                    <span class="text-slate-400 block text-[10px]">Reach / Clicks</span>
+                    <span class="font-semibold text-slate-800">30k / 3,650</span>
+                  </div>
+                  <div class="bg-white p-2 rounded border border-slate-100">
+                    <span class="text-slate-400 block text-[10px]">Engagement Rate</span>
+                    <span class="font-semibold text-red-600">4.1%</span>
+                  </div>
+                  <div class="bg-white p-2 rounded border border-slate-100">
+                    <span class="text-slate-400 block text-[10px]">Net Return Multiple</span>
+                    <span class="font-semibold text-emerald-600">5.9x ROAS</span>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="mt-4 p-3 bg-pink-50/70 border border-pink-100 rounded-lg text-xs text-pink-900 flex items-start space-x-2">
+            <span class="text-pink-600 font-bold">📊 Platform Takeaway:</span>
+            <span><strong>Instagram</strong> provides the largest volume of conversions (345 sales / €3,930), but <strong>TikTok</strong> offers the lowest ad cost per acquisition and highest engagement (7.2%).</span>
+          </div>
+        </div>
+
+        <!-- DRIVER 3: PERFORMANCE BY PRODUCT (lg:col-span-7) -->
+        <div class="lg:col-span-7 bg-white rounded-xl p-5 sm:p-6 border border-slate-200/80 shadow-xs flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between pb-3 mb-4 border-b border-slate-100">
+              <div>
+                <h3 class="font-bold text-slate-900 text-base flex items-center">
+                  <svg class="w-4 h-4 mr-2 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/>
+                  </svg>
+                  Driver 3: Performance by Product (A: €50, B: €120, C: €80)
+                </h3>
+                <p class="text-xs text-slate-500 mt-0.5">Which product drives the most revenue vs the most conversions at 15% commission</p>
+              </div>
+              <span class="text-xs font-semibold px-2 py-1 bg-amber-50 text-amber-700 rounded-md">
+                15% Fixed Cut
+              </span>
+            </div>
+
+            <!-- Product Cards Comparison -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-3.5">
+              
+              <!-- Product A -->
+              <div class="border border-slate-200 rounded-xl p-3.5 bg-slate-50/60 hover:bg-white hover:shadow-xs transition">
+                <div class="flex items-center justify-between">
+                  <span class="text-xs font-bold text-slate-800">Product A</span>
+                  <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-blue-100 text-blue-800">€50 Price</span>
+                </div>
+                <p class="text-[11px] text-slate-500 mt-0.5">Glow Skincare Routine</p>
+
+                <div class="mt-3 space-y-1.5 text-xs">
+                  <div class="flex justify-between">
+                    <span class="text-slate-500">Comm./Sale:</span>
+                    <span class="font-bold text-emerald-600">€7.50</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span class="text-slate-500">Units Sold:</span>
+                    <span class="font-bold text-slate-900">320 <span class="text-blue-600 font-semibold">(Top Vol!)</span></span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span class="text-slate-500">Gross Sales:</span>
+                    <span class="font-bold text-slate-900">€16,000</span>
+                  </div>
+                  <div class="flex justify-between pt-1 border-t border-slate-200">
+                    <span class="text-slate-700 font-semibold">Comm. Earned:</span>
+                    <span class="font-extrabold text-indigo-700">€2,400.00</span>
+                  </div>
+                  <div class="flex justify-between text-[11px]">
+                    <span class="text-slate-400">Conv. Rate:</span>
+                    <span class="font-semibold text-slate-700">3.76%</span>
+                  </div>
+                </div>
+
+                <!-- Product A Bar -->
+                <div class="mt-3">
+                  <div class="w-full bg-slate-200 rounded-full h-1.5 overflow-hidden">
+                    <div class="bg-blue-500 h-full rounded-full" style="width: 29.7%"></div>
+                  </div>
+                  <span class="text-[10px] text-slate-400 block mt-1">29.7% of total commissions</span>
+                </div>
+              </div>
+
+              <!-- Product B -->
+              <div class="border-2 border-amber-300 rounded-xl p-3.5 bg-amber-50/30 hover:bg-white hover:shadow-xs transition relative">
+                <span class="absolute -top-2.5 right-3 px-2 py-0.5 rounded-full text-[9px] font-extrabold bg-amber-500 text-white uppercase tracking-wider">
+                  Revenue King
+                </span>
+                <div class="flex items-center justify-between">
+                  <span class="text-xs font-bold text-slate-800">Product B</span>
+                  <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-100 text-amber-900">€120 Price</span>
+                </div>
+                <p class="text-[11px] text-slate-500 mt-0.5">CreatorPro Audio Kit</p>
+
+                <div class="mt-3 space-y-1.5 text-xs">
+                  <div class="flex justify-between">
+                    <span class="text-slate-500">Comm./Sale:</span>
+                    <span class="font-bold text-emerald-600">€18.00</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span class="text-slate-500">Units Sold:</span>
+                    <span class="font-bold text-slate-900">175</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span class="text-slate-500">Gross Sales:</span>
+                    <span class="font-extrabold text-amber-700">€21,000 (Top!)</span>
+                  </div>
+                  <div class="flex justify-between pt-1 border-t border-amber-200">
+                    <span class="text-slate-700 font-semibold">Comm. Earned:</span>
+                    <span class="font-extrabold text-amber-800">€3,150.00</span>
+                  </div>
+                  <div class="flex justify-between text-[11px]">
+                    <span class="text-slate-400">Conv. Rate:</span>
+                    <span class="font-semibold text-slate-700">2.82%</span>
+                  </div>
+                </div>
+
+                <!-- Product B Bar -->
+                <div class="mt-3">
+                  <div class="w-full bg-slate-200 rounded-full h-1.5 overflow-hidden">
+                    <div class="bg-amber-500 h-full rounded-full" style="width: 39.0%"></div>
+                  </div>
+                  <span class="text-[10px] text-amber-700 font-medium block mt-1">39.0% of total commissions</span>
+                </div>
+              </div>
+
+              <!-- Product C -->
+              <div class="border border-slate-200 rounded-xl p-3.5 bg-slate-50/60 hover:bg-white hover:shadow-xs transition">
+                <div class="flex items-center justify-between">
+                  <span class="text-xs font-bold text-slate-800">Product C</span>
+                  <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-purple-100 text-purple-800">€80 Price</span>
+                </div>
+                <p class="text-[11px] text-slate-500 mt-0.5">ErgoFlow Desk Pad Set</p>
+
+                <div class="mt-3 space-y-1.5 text-xs">
+                  <div class="flex justify-between">
+                    <span class="text-slate-500">Comm./Sale:</span>
+                    <span class="font-bold text-emerald-600">€12.00</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span class="text-slate-500">Units Sold:</span>
+                    <span class="font-bold text-slate-900">210</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span class="text-slate-500">Gross Sales:</span>
+                    <span class="font-bold text-slate-900">€16,800</span>
+                  </div>
+                  <div class="flex justify-between pt-1 border-t border-slate-200">
+                    <span class="text-slate-700 font-semibold">Comm. Earned:</span>
+                    <span class="font-extrabold text-indigo-700">€2,520.00</span>
+                  </div>
+                  <div class="flex justify-between text-[11px]">
+                    <span class="text-slate-400">Conv. Rate:</span>
+                    <span class="font-bold text-emerald-600">3.88% (Top CR!)</span>
+                  </div>
+                </div>
+
+                <!-- Product C Bar -->
+                <div class="mt-3">
+                  <div class="w-full bg-slate-200 rounded-full h-1.5 overflow-hidden">
+                    <div class="bg-purple-500 h-full rounded-full" style="width: 31.3%"></div>
+                  </div>
+                  <span class="text-[10px] text-slate-400 block mt-1">31.3% of total commissions</span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="mt-4 p-3 bg-amber-50/80 border border-amber-200 rounded-lg text-xs text-amber-900 flex items-start space-x-2">
+            <span class="text-amber-700 font-bold">🎯 Product Insight:</span>
+            <span>Even though <strong>Product A (€50)</strong> sold the most units (320), <strong>Product B (€120)</strong> generated the most money for the influencer (€3,150) due to its high ticket size. <strong>Product C (€80)</strong> is the sweet spot with the best conversion rate (3.88%).</span>
+          </div>
+        </div>
+
+        <!-- DRIVER 4: ACTIVITY & ENGAGEMENT QUALITY (lg:col-span-5) -->
+        <div class="lg:col-span-5 bg-white rounded-xl p-5 sm:p-6 border border-slate-200/80 shadow-xs flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between pb-3 mb-4 border-b border-slate-100">
+              <div>
+                <h3 class="font-bold text-slate-900 text-base flex items-center">
+                  <svg class="w-4 h-4 mr-2 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5"/>
+                  </svg>
+                  Driver 4: Activity & Interaction Quality
+                </h3>
+                <p class="text-xs text-slate-500 mt-0.5">Content volume and breakdown of user interaction types</p>
+              </div>
+              <span class="text-xs font-semibold px-2 py-1 bg-emerald-50 text-emerald-700 rounded-md">
+                125.9k Total Actions
+              </span>
+            </div>
+
+            <!-- Content Activity Summary -->
+            <div class="grid grid-cols-3 gap-2 mb-4 text-center">
+              <div class="p-2.5 rounded-lg bg-slate-50 border border-slate-100">
+                <span class="block text-slate-400 text-[10px] font-medium uppercase">Instagram</span>
+                <span class="font-extrabold text-slate-800 text-sm">20 assets</span>
+                <span class="text-[10px] text-slate-500 block">14 stories / 6 reels</span>
+              </div>
+              <div class="p-2.5 rounded-lg bg-slate-50 border border-slate-100">
+                <span class="block text-slate-400 text-[10px] font-medium uppercase">TikTok</span>
+                <span class="font-extrabold text-slate-800 text-sm">12 videos</span>
+                <span class="text-[10px] text-slate-500 block">3 pinned / 9 feed</span>
+              </div>
+              <div class="p-2.5 rounded-lg bg-slate-50 border border-slate-100">
+                <span class="block text-slate-400 text-[10px] font-medium uppercase">YouTube</span>
+                <span class="font-extrabold text-slate-800 text-sm">6 assets</span>
+                <span class="text-[10px] text-slate-500 block">2 reviews / 4 shorts</span>
+              </div>
+            </div>
+
+            <!-- Engagement Type Breakdown -->
+            <div class="space-y-2.5 text-xs">
+              <div>
+                <div class="flex justify-between mb-1">
+                  <span class="text-slate-600 font-medium">❤️ Likes (100,100)</span>
+                  <span class="text-slate-800 font-bold">79.5%</span>
+                </div>
+                <div class="w-full bg-slate-100 rounded-full h-2">
+                  <div class="bg-red-400 h-2 rounded-full" style="width: 79.5%"></div>
+                </div>
+              </div>
+
+              <div>
+                <div class="flex justify-between mb-1">
+                  <span class="text-slate-600 font-medium">💬 Comments & Questions (9,700)</span>
+                  <span class="text-slate-800 font-bold">7.7%</span>
+                </div>
+                <div class="w-full bg-slate-100 rounded-full h-2">
+                  <div class="bg-blue-400 h-2 rounded-full" style="width: 7.7%"></div>
+                </div>
+              </div>
+
+              <div>
+                <div class="flex justify-between mb-1">
+                  <span class="text-slate-600 font-medium">↗️ Direct Shares (16,080)</span>
+                  <span class="text-slate-800 font-bold">12.8%</span>
+                </div>
+                <div class="w-full bg-slate-100 rounded-full h-2">
+                  <div class="bg-indigo-400 h-2 rounded-full" style="width: 12.8%"></div>
+                </div>
+              </div>
+
+              <div>
+                <div class="flex justify-between mb-1">
+                  <span class="text-slate-600 font-medium">🔖 Bookmarks / Saves (8,400)</span>
+                  <span class="text-emerald-700 font-bold">High Intent!</span>
+                </div>
+                <div class="w-full bg-slate-100 rounded-full h-2">
+                  <div class="bg-emerald-500 h-2 rounded-full" style="width: 28%"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-4 p-3 bg-emerald-50/70 border border-emerald-100 rounded-lg text-xs text-emerald-900 flex items-start space-x-2">
+            <span class="text-emerald-600 font-bold">✨ Engagement Driver:</span>
+            <span>TikTok content drives <strong>2.1x more shares</strong> per 1,000 views than Instagram, acting as an organic multiplier for affiliate link discovery without additional ad spend.</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================= -->
+    <!-- 3️⃣ BOTTOM BLOCK: OPERATIONAL DETAILS                     -->
+    <!-- Detailed Tables, Alerts & Improvement Opportunities       -->
+    <!-- ========================================================= -->
+    <section aria-labelledby="operational-heading" class="space-y-6">
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
+        <div class="flex items-center space-x-2">
+          <span class="w-7 h-7 rounded-lg bg-slate-800 text-white flex items-center justify-center font-bold text-xs shadow-sm">3️⃣</span>
+          <div>
+            <h2 id="operational-heading" class="text-lg sm:text-xl font-bold text-slate-900">
+              Bottom Block: Operational Details & Real-Time Alerts
+            </h2>
+            <p class="text-xs text-slate-500">Granular performance tables, campaign logs, and automated anomaly warnings</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ALERTS & ANOMALY MONITOR -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        
+        <!-- Alert 1: Positive Spike -->
+        <div class="bg-emerald-50/70 border border-emerald-200 rounded-xl p-4 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center space-x-2">
+              <span class="w-2.5 h-2.5 bg-emerald-500 rounded-full pulse-glow"></span>
+              <span class="text-xs font-bold text-emerald-800 uppercase tracking-wide">Conversion Spike</span>
+            </div>
+            <h4 class="text-xs font-bold text-slate-900 mt-2">TikTok Reel #4 Viral Spike</h4>
+            <p class="text-xs text-slate-600 mt-1">
+              Microphone setup video went viral on TikTok (+240% conversions in 48h for Product B).
+            </p>
+          </div>
+          <div class="mt-3 pt-2 border-t border-emerald-200/60 flex items-center justify-between text-[11px] text-emerald-700 font-semibold">
+            <span>+€1,180 commission boost</span>
+            <span class="underline cursor-pointer">View Post</span>
+          </div>
+        </div>
+
+        <!-- Alert 2: Performance Drop Warning -->
+        <div class="bg-amber-50/70 border border-amber-200 rounded-xl p-4 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center space-x-2">
+              <span class="w-2.5 h-2.5 bg-amber-500 rounded-full"></span>
+              <span class="text-xs font-bold text-amber-800 uppercase tracking-wide">Conversion Drop Alert</span>
+            </div>
+            <h4 class="text-xs font-bold text-slate-900 mt-2">Sunday Instagram Story Link Taps</h4>
+            <p class="text-xs text-slate-600 mt-1">
+              Story link sticker tap-through fell 28% below average. Link sticker was placed too low near navigation.
+            </p>
+          </div>
+          <div class="mt-3 pt-2 border-t border-amber-200/60 flex items-center justify-between text-[11px] text-amber-700 font-semibold">
+            <span>Fix: Reposition sticker center</span>
+            <span class="underline cursor-pointer">Details</span>
+          </div>
+        </div>
+
+        <!-- Alert 3: Growth Opportunity -->
+        <div class="bg-indigo-50/70 border border-indigo-200 rounded-xl p-4 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center space-x-2">
+              <span class="w-2.5 h-2.5 bg-indigo-500 rounded-full"></span>
+              <span class="text-xs font-bold text-indigo-800 uppercase tracking-wide">Improvement Opportunity</span>
+            </div>
+            <h4 class="text-xs font-bold text-slate-900 mt-2">Bundle A & C Recommendation</h4>
+            <p class="text-xs text-slate-600 mt-1">
+              43% of Product A buyers also viewed Product C. Propose a €125 bundle to increase commission to €18.75/sale.
+            </p>
+          </div>
+          <div class="mt-3 pt-2 border-t border-indigo-200/60 flex items-center justify-between text-[11px] text-indigo-700 font-semibold">
+            <span>Est. +€950/mo potential</span>
+            <span class="underline cursor-pointer">Draft Pitch</span>
+          </div>
+        </div>
+
+        <!-- Alert 4: Partner Inventory & Stock Status -->
+        <div class="bg-slate-50 border border-slate-200 rounded-xl p-4 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center space-x-2">
+              <span class="w-2.5 h-2.5 bg-slate-400 rounded-full"></span>
+              <span class="text-xs font-bold text-slate-700 uppercase tracking-wide">Stock / Link Health</span>
+            </div>
+            <h4 class="text-xs font-bold text-slate-900 mt-2">All Affiliate Links Healthy (100%)</h4>
+            <p class="text-xs text-slate-600 mt-1">
+              Product A inventory refilled on Oct 18 after low stock alert. No affiliate tracking errors detected.
+            </p>
+          </div>
+          <div class="mt-3 pt-2 border-t border-slate-200 flex items-center justify-between text-[11px] text-slate-600 font-medium">
+            <span>3 Active Brand Deals</span>
+            <span class="text-emerald-600 font-bold">Active</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- FILTER TABS FOR OPERATIONAL TABLES -->
+      <div class="bg-white rounded-xl border border-slate-200/80 shadow-xs overflow-hidden">
+        
+        <div class="p-4 sm:p-5 border-b border-slate-100 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+          <div>
+            <h3 class="font-bold text-slate-900 text-base">Comprehensive Operational Breakdown</h3>
+            <p class="text-xs text-slate-500">Inspect granular data across products, platforms, and individual sponsored campaigns</p>
+          </div>
+          
+          <!-- Filter buttons -->
+          <div class="flex items-center space-x-1 sm:space-x-2 bg-slate-100 p-1 rounded-lg self-start sm:self-center overflow-x-auto max-w-full">
+            <button class="px-3 py-1 text-xs font-bold rounded-md bg-white text-slate-900 shadow-xs">All Tables</button>
+            <button class="px-3 py-1 text-xs font-medium text-slate-600 hover:text-slate-900">Products Focus</button>
+            <button class="px-3 py-1 text-xs font-medium text-slate-600 hover:text-slate-900">Platforms Focus</button>
+            <button class="px-3 py-1 text-xs font-medium text-slate-600 hover:text-slate-900">Campaigns Log</button>
+          </div>
+        </div>
+
+        <!-- TABLE 1: PRODUCTS TABLE -->
+        <div class="p-4 sm:p-6 border-b border-slate-200/60">
+          <div class="flex items-center justify-between mb-3">
+            <h4 class="text-sm font-bold text-slate-900 flex items-center">
+              <span class="w-2 h-2 rounded-full bg-indigo-500 mr-2"></span>
+              Table 1: Products Performance & Commission Return
+            </h4>
+            <span class="text-xs text-slate-500">3 Verified Affiliate SKUs</span>
+          </div>
+
+          <div class="table-scroll-container">
+            <table class="w-full text-left border-collapse text-xs">
+              <thead>
+                <tr class="bg-slate-50/80 border-y border-slate-200 text-slate-600 uppercase font-semibold text-[11px] tracking-wider">
+                  <th class="py-3 px-3">Product Name & SKU</th>
+                  <th class="py-3 px-3">Retail Price</th>
+                  <th class="py-3 px-3">Comm. Rate</th>
+                  <th class="py-3 px-3">Cut / Sale</th>
+                  <th class="py-3 px-3">Units Sold</th>
+                  <th class="py-3 px-3">Gross Brand Sales</th>
+                  <th class="py-3 px-3">Total Commission</th>
+                  <th class="py-3 px-3">Conversion Rate</th>
+                  <th class="py-3 px-3">Performance Note</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100 text-slate-700 font-medium">
+                <!-- Product A -->
+                <tr class="hover:bg-slate-50/80 transition-colors">
+                  <td class="py-3 px-3 font-bold text-slate-900 flex items-center space-x-2">
+                    <span class="w-6 h-6 rounded bg-blue-100 text-blue-800 flex items-center justify-center text-xs font-bold">A</span>
+                    <div>
+                      <span>Product A</span>
+                      <span class="text-[10px] text-slate-400 block font-normal">Glow Skincare Routine (SKU: GLW-50)</span>
+                    </div>
+                  </td>
+                  <td class="py-3 px-3 font-semibold">€50.00</td>
+                  <td class="py-3 px-3 font-bold text-indigo-600">15%</td>
+                  <td class="py-3 px-3 font-bold text-emerald-600">€7.50</td>
+                  <td class="py-3 px-3 font-bold text-slate-900">320 units</td>
+                  <td class="py-3 px-3 font-semibold">€16,000.00</td>
+                  <td class="py-3 px-3 font-extrabold text-indigo-700">€2,400.00</td>
+                  <td class="py-3 px-3 font-semibold text-slate-800">3.76%</td>
+                  <td class="py-3 px-3">
+                    <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-semibold bg-blue-100 text-blue-800">
+                      Top Volume Leader
+                    </span>
+                  </td>
+                </tr>
+
+                <!-- Product B -->
+                <tr class="hover:bg-slate-50/80 transition-colors bg-amber-50/20">
+                  <td class="py-3 px-3 font-bold text-slate-900 flex items-center space-x-2">
+                    <span class="w-6 h-6 rounded bg-amber-100 text-amber-800 flex items-center justify-center text-xs font-bold">B</span>
+                    <div>
+                      <span>Product B</span>
+                      <span class="text-[10px] text-slate-400 block font-normal">CreatorPro Audio Kit (SKU: MIC-120)</span>
+                    </div>
+                  </td>
+                  <td class="py-3 px-3 font-semibold">€120.00</td>
+                  <td class="py-3 px-3 font-bold text-indigo-600">15%</td>
+                  <td class="py-3 px-3 font-bold text-emerald-600">€18.00</td>
+                  <td class="py-3 px-3 font-bold text-slate-900">175 units</td>
+                  <td class="py-3 px-3 font-extrabold text-amber-800">€21,000.00</td>
+                  <td class="py-3 px-3 font-extrabold text-amber-900">€3,150.00</td>
+                  <td class="py-3 px-3 font-semibold text-slate-800">2.82%</td>
+                  <td class="py-3 px-3">
+                    <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-semibold bg-amber-100 text-amber-900">
+                      ⭐ Highest Revenue & Comm.
+                    </span>
+                  </td>
+                </tr>
+
+                <!-- Product C -->
+                <tr class="hover:bg-slate-50/80 transition-colors">
+                  <td class="py-3 px-3 font-bold text-slate-900 flex items-center space-x-2">
+                    <span class="w-6 h-6 rounded bg-purple-100 text-purple-800 flex items-center justify-center text-xs font-bold">C</span>
+                    <div>
+                      <span>Product C</span>
+                      <span class="text-[10px] text-slate-400 block font-normal">ErgoFlow Desk Pad Set (SKU: DESK-80)</span>
+                    </div>
+                  </td>
+                  <td class="py-3 px-3 font-semibold">€80.00</td>
+                  <td class="py-3 px-3 font-bold text-indigo-600">15%</td>
+                  <td class="py-3 px-3 font-bold text-emerald-600">€12.00</td>
+                  <td class="py-3 px-3 font-bold text-slate-900">210 units</td>
+                  <td class="py-3 px-3 font-semibold">€16,800.00</td>
+                  <td class="py-3 px-3 font-extrabold text-indigo-700">€2,520.00</td>
+                  <td class="py-3 px-3 font-extrabold text-emerald-600">3.88%</td>
+                  <td class="py-3 px-3">
+                    <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-semibold bg-emerald-100 text-emerald-800">
+                      🎯 Best Conversion Rate
+                    </span>
+                  </td>
+                </tr>
+
+                <!-- Totals Row -->
+                <tr class="bg-slate-100/80 font-bold text-slate-900 border-t-2 border-slate-300">
+                  <td class="py-3 px-3">Consolidated Totals</td>
+                  <td class="py-3 px-3 text-slate-500 font-medium">Avg €76.31</td>
+                  <td class="py-3 px-3 font-bold text-indigo-600">15% avg</td>
+                  <td class="py-3 px-3 font-bold text-emerald-600">€11.45 avg</td>
+                  <td class="py-3 px-3 font-extrabold">705 units</td>
+                  <td class="py-3 px-3 font-extrabold text-slate-900">€53,800.00</td>
+                  <td class="py-3 px-3 font-extrabold text-indigo-900">€8,070.00</td>
+                  <td class="py-3 px-3 font-extrabold">3.87% avg</td>
+                  <td class="py-3 px-3 text-emerald-700 font-bold">100% Commission Yield</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- TABLE 2: PLATFORMS TABLE -->
+        <div class="p-4 sm:p-6 border-b border-slate-200/60">
+          <div class="flex items-center justify-between mb-3">
+            <h4 class="text-sm font-bold text-slate-900 flex items-center">
+              <span class="w-2 h-2 rounded-full bg-pink-500 mr-2"></span>
+              Table 2: Social Media Platform Performance & Cost Return
+            </h4>
+            <span class="text-xs text-slate-500">Consolidating Instagram, TikTok & YouTube</span>
+          </div>
+
+          <div class="table-scroll-container">
+            <table class="w-full text-left border-collapse text-xs">
+              <thead>
+                <tr class="bg-slate-50/80 border-y border-slate-200 text-slate-600 uppercase font-semibold text-[11px] tracking-wider">
+                  <th class="py-3 px-3">Platform</th>
+                  <th class="py-3 px-3">Total Posts</th>
+                  <th class="py-3 px-3">Total Reach</th>
+                  <th class="py-3 px-3">Engagement Rate</th>
+                  <th class="py-3 px-3">Bio / Story Clicks</th>
+                  <th class="py-3 px-3">Conversions</th>
+                  <th class="py-3 px-3">Commission Earned</th>
+                  <th class="py-3 px-3">Ad / Creation Cost</th>
+                  <th class="py-3 px-3">Return Multiple (ROAS)</th>
+                  <th class="py-3 px-3">Primary Platform Strength</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100 text-slate-700 font-medium">
+                <!-- Instagram -->
+                <tr class="hover:bg-slate-50/80 transition-colors">
+                  <td class="py-3 px-3 font-bold text-slate-900 flex items-center space-x-2">
+                    <span class="w-6 h-6 rounded bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-600 text-white flex items-center justify-center text-[10px] font-bold">IG</span>
+                    <span>Instagram</span>
+                  </td>
+                  <td class="py-3 px-3">20 assets</td>
+                  <td class="py-3 px-3 font-semibold text-slate-900">95,000</td>
+                  <td class="py-3 px-3 font-semibold text-pink-600">5.4%</td>
+                  <td class="py-3 px-3 font-semibold text-slate-900">8,450</td>
+                  <td class="py-3 px-3 font-extrabold text-slate-900">345 sales</td>
+                  <td class="py-3 px-3 font-extrabold text-indigo-700">€3,930.00</td>
+                  <td class="py-3 px-3 font-medium">€450.00</td>
+                  <td class="py-3 px-3 font-bold text-emerald-600">8.7x Return</td>
+                  <td class="py-3 px-3">
+                    <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-semibold bg-purple-100 text-purple-800">
+                      Highest Conversion Volume (48.7%)
+                    </span>
+                  </td>
+                </tr>
+
+                <!-- TikTok -->
+                <tr class="hover:bg-slate-50/80 transition-colors bg-cyan-50/20">
+                  <td class="py-3 px-3 font-bold text-slate-900 flex items-center space-x-2">
+                    <span class="w-6 h-6 rounded bg-black text-cyan-400 flex items-center justify-center text-[10px] font-bold">TT</span>
+                    <span>TikTok</span>
+                  </td>
+                  <td class="py-3 px-3">12 videos</td>
+                  <td class="py-3 px-3 font-semibold text-slate-900">76,000</td>
+                  <td class="py-3 px-3 font-extrabold text-cyan-600">7.2%</td>
+                  <td class="py-3 px-3 font-semibold text-slate-900">6,100</td>
+                  <td class="py-3 px-3 font-extrabold text-slate-900">220 sales</td>
+                  <td class="py-3 px-3 font-extrabold text-indigo-700">€2,385.00</td>
+                  <td class="py-3 px-3 font-medium">€250.00</td>
+                  <td class="py-3 px-3 font-extrabold text-emerald-700">9.5x Return</td>
+                  <td class="py-3 px-3">
+                    <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-semibold bg-emerald-100 text-emerald-800">
+                      🚀 Best Engagement & Return
+                    </span>
+                  </td>
+                </tr>
+
+                <!-- YouTube -->
+                <tr class="hover:bg-slate-50/80 transition-colors">
+                  <td class="py-3 px-3 font-bold text-slate-900 flex items-center space-x-2">
+                    <span class="w-6 h-6 rounded bg-red-600 text-white flex items-center justify-center text-[10px] font-bold">YT</span>
+                    <span>YouTube</span>
+                  </td>
+                  <td class="py-3 px-3">6 videos</td>
+                  <td class="py-3 px-3 font-semibold text-slate-900">30,000</td>
+                  <td class="py-3 px-3 font-semibold text-red-600">4.1%</td>
+                  <td class="py-3 px-3 font-semibold text-slate-900">3,650</td>
+                  <td class="py-3 px-3 font-extrabold text-slate-900">140 sales</td>
+                  <td class="py-3 px-3 font-extrabold text-indigo-700">€1,755.00</td>
+                  <td class="py-3 px-3 font-medium">€300.00</td>
+                  <td class="py-3 px-3 font-bold text-emerald-600">5.9x Return</td>
+                  <td class="py-3 px-3">
+                    <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-semibold bg-amber-100 text-amber-800">
+                      Highest Average Order Value
+                    </span>
+                  </td>
+                </tr>
+
+                <!-- Consolidated Totals -->
+                <tr class="bg-slate-100/80 font-bold text-slate-900 border-t-2 border-slate-300">
+                  <td class="py-3 px-3">Consolidated Totals</td>
+                  <td class="py-3 px-3">38 assets</td>
+                  <td class="py-3 px-3 font-extrabold">201,000</td>
+                  <td class="py-3 px-3 font-bold text-slate-800">5.9% avg</td>
+                  <td class="py-3 px-3 font-extrabold">18,200</td>
+                  <td class="py-3 px-3 font-extrabold text-slate-900">705 sales</td>
+                  <td class="py-3 px-3 font-extrabold text-indigo-900">€8,070.00</td>
+                  <td class="py-3 px-3 font-bold">€1,000.00</td>
+                  <td class="py-3 px-3 font-extrabold text-emerald-700">8.07x Total Return</td>
+                  <td class="py-3 px-3 text-emerald-700 font-bold">€7,070 Net Profit</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- TABLE 3: RECENT CAMPAIGNS & SPONSORED CONTENT LOG -->
+        <div class="p-4 sm:p-6">
+          <div class="flex items-center justify-between mb-3">
+            <h4 class="text-sm font-bold text-slate-900 flex items-center">
+              <span class="w-2 h-2 rounded-full bg-emerald-500 mr-2"></span>
+              Table 3: Recent Sponsored Campaigns & Asset Performance
+            </h4>
+            <span class="text-xs text-slate-500">Last 5 Major Activations</span>
+          </div>
+
+          <div class="table-scroll-container">
+            <table class="w-full text-left border-collapse text-xs">
+              <thead>
+                <tr class="bg-slate-50/80 border-y border-slate-200 text-slate-600 uppercase font-semibold text-[11px] tracking-wider">
+                  <th class="py-3 px-3">Content / Campaign Title</th>
+                  <th class="py-3 px-3">Channel & Format</th>
+                  <th class="py-3 px-3">Product Promoted</th>
+                  <th class="py-3 px-3">Published Date</th>
+                  <th class="py-3 px-3">Impressions / Reach</th>
+                  <th class="py-3 px-3">Clicks</th>
+                  <th class="py-3 px-3">Conversions</th>
+                  <th class="py-3 px-3">Commission Generated</th>
+                  <th class="py-3 px-3">Performance Grade</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100 text-slate-700 font-medium">
+                <!-- Campaign 1 -->
+                <tr class="hover:bg-slate-50/80 transition-colors">
+                  <td class="py-3 px-3 font-bold text-slate-900">
+                    "My 5AM Morning Routine: Glass Skin Secrets"
+                  </td>
+                  <td class="py-3 px-3">
+                    <span class="inline-flex items-center text-pink-700 bg-pink-50 px-2 py-0.5 rounded text-[10px] font-semibold">
+                      IG Reel + Story Sticker
+                    </span>
+                  </td>
+                  <td class="py-3 px-3 font-semibold text-slate-800">Product A (€50)</td>
+                  <td class="py-3 px-3 text-slate-500">Oct 24, 2026</td>
+                  <td class="py-3 px-3 font-semibold">41,200</td>
+                  <td class="py-3 px-3 font-semibold">3,890</td>
+                  <td class="py-3 px-3 font-bold text-slate-900">142 sales</td>
+                  <td class="py-3 px-3 font-extrabold text-indigo-700">€1,065.00</td>
+                  <td class="py-3 px-3">
+                    <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-100 text-emerald-800">A+ (Exceptional)</span>
+                  </td>
+                </tr>
+
+                <!-- Campaign 2 -->
+                <tr class="hover:bg-slate-50/80 transition-colors">
+                  <td class="py-3 px-3 font-bold text-slate-900">
+                    "Stop Buying Cheap Mics! Creator Setup Upgrade"
+                  </td>
+                  <td class="py-3 px-3">
+                    <span class="inline-flex items-center text-slate-900 bg-cyan-100 px-2 py-0.5 rounded text-[10px] font-semibold">
+                      TikTok Viral Video
+                    </span>
+                  </td>
+                  <td class="py-3 px-3 font-semibold text-slate-800">Product B (€120)</td>
+                  <td class="py-3 px-3 text-slate-500">Oct 20, 2026</td>
+                  <td class="py-3 px-3 font-semibold">52,400</td>
+                  <td class="py-3 px-3 font-semibold">4,120</td>
+                  <td class="py-3 px-3 font-bold text-slate-900">98 sales</td>
+                  <td class="py-3 px-3 font-extrabold text-indigo-700">€1,764.00</td>
+                  <td class="py-3 px-3">
+                    <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-100 text-emerald-800">A+ (Viral Spike)</span>
+                  </td>
+                </tr>
+
+                <!-- Campaign 3 -->
+                <tr class="hover:bg-slate-50/80 transition-colors">
+                  <td class="py-3 px-3 font-bold text-slate-900">
+                    "The Ultimate Desk Organization For Deep Work"
+                  </td>
+                  <td class="py-3 px-3">
+                    <span class="inline-flex items-center text-red-700 bg-red-50 px-2 py-0.5 rounded text-[10px] font-semibold">
+                      YouTube Dedicated 60s
+                    </span>
+                  </td>
+                  <td class="py-3 px-3 font-semibold text-slate-800">Product C (€80)</td>
+                  <td class="py-3 px-3 text-slate-500">Oct 15, 2026</td>
+                  <td class="py-3 px-3 font-semibold">22,100</td>
+                  <td class="py-3 px-3 font-semibold">2,740</td>
+                  <td class="py-3 px-3 font-bold text-slate-900">105 sales</td>
+                  <td class="py-3 px-3 font-extrabold text-indigo-700">€1,260.00</td>
+                  <td class="py-3 px-3">
+                    <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-blue-100 text-blue-800">A (High Intent)</span>
+                  </td>
+                </tr>
+
+                <!-- Campaign 4 -->
+                <tr class="hover:bg-slate-50/80 transition-colors">
+                  <td class="py-3 px-3 font-bold text-slate-900">
+                    "Sunday Reset: Night Skincare Routine"
+                  </td>
+                  <td class="py-3 px-3">
+                    <span class="inline-flex items-center text-pink-700 bg-pink-50 px-2 py-0.5 rounded text-[10px] font-semibold">
+                      IG Stories (4 frames)
+                    </span>
+                  </td>
+                  <td class="py-3 px-3 font-semibold text-slate-800">Product A (€50)</td>
+                  <td class="py-3 px-3 text-slate-500">Oct 11, 2026</td>
+                  <td class="py-3 px-3 font-semibold">18,500</td>
+                  <td class="py-3 px-3 font-semibold">1,120</td>
+                  <td class="py-3 px-3 font-bold text-slate-900">38 sales</td>
+                  <td class="py-3 px-3 font-extrabold text-indigo-700">€285.00</td>
+                  <td class="py-3 px-3">
+                    <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-100 text-amber-800">B (Below Avg CTR)</span>
+                  </td>
+                </tr>
+
+                <!-- Campaign 5 -->
+                <tr class="hover:bg-slate-50/80 transition-colors">
+                  <td class="py-3 px-3 font-bold text-slate-900">
+                    "3 Audio Mistakes You're Making On Camera"
+                  </td>
+                  <td class="py-3 px-3">
+                    <span class="inline-flex items-center text-slate-900 bg-cyan-100 px-2 py-0.5 rounded text-[10px] font-semibold">
+                      TikTok Educational
+                    </span>
+                  </td>
+                  <td class="py-3 px-3 font-semibold text-slate-800">Product B (€120)</td>
+                  <td class="py-3 px-3 text-slate-500">Oct 05, 2026</td>
+                  <td class="py-3 px-3 font-semibold">23,600</td>
+                  <td class="py-3 px-3 font-semibold">1,980</td>
+                  <td class="py-3 px-3 font-bold text-slate-900">77 sales</td>
+                  <td class="py-3 px-3 font-extrabold text-indigo-700">€1,386.00</td>
+                  <td class="py-3 px-3">
+                    <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-100 text-emerald-800">A (High Conversion)</span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ACTIONABLE RECOMMENDATION / STRATEGY ROADMAP -->
+      <div class="bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 text-white rounded-xl p-5 sm:p-6 border border-slate-800">
+        <div class="flex items-center space-x-2 mb-3">
+          <span class="px-2.5 py-1 rounded bg-indigo-500/20 text-indigo-300 font-bold text-xs uppercase tracking-wider border border-indigo-400/30">
+            Strategic Roadmap for Next Month
+          </span>
+          <span class="text-xs text-slate-400">Derived from consolidated dashboard analytics</span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs mt-3">
+          <div class="bg-white/5 rounded-lg p-3.5 border border-white/10">
+            <h5 class="font-bold text-indigo-300 mb-1 flex items-center">
+              1. Maximize Product B TikTok Content
+            </h5>
+            <p class="text-slate-300">
+              Product B delivers €18.00 commission per sale and has a 9.5x ROAS on TikTok. Produce 2 additional short comparison videos next month to capture ~€1,400 extra commission.
+            </p>
+          </div>
+
+          <div class="bg-white/5 rounded-lg p-3.5 border border-white/10">
+            <h5 class="font-bold text-emerald-300 mb-1 flex items-center">
+              2. Optimize Instagram Story Link Taps
+            </h5>
+            <p class="text-slate-300">
+              Move link stickers into the top-third hotspot on Instagram Stories and use animated pointing cues to recover Sunday's 28% drop in tap-through rates.
+            </p>
+          </div>
+
+          <div class="bg-white/5 rounded-lg p-3.5 border border-white/10">
+            <h5 class="font-bold text-amber-300 mb-1 flex items-center">
+              3. Negotiate 18% Tier on Product A
+            </h5>
+            <p class="text-slate-300">
+              With 320 units sold, Sofia accounts for 22% of the brand's affiliate volume. Leverage this proof of performance to request a tiered commission raise from 15% to 18%.
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- ========================================================= -->
+  <!-- FOOTER                                                    -->
+  <!-- ========================================================= -->
+  <footer class="mt-12 bg-white border-t border-slate-200 py-6 text-xs text-slate-500">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center space-x-2">
+        <div class="w-6 h-6 rounded bg-indigo-600 text-white flex items-center justify-center font-black text-xs">CS</div>
+        <span class="font-bold text-slate-800">CreatorSync Analytics Dashboard</span>
+        <span>• Pure HTML + Tailwind CSS v4</span>
+      </div>
+      <div class="flex items-center space-x-4">
+        <span>Confidential Partner Report</span>
+        <span>•</span>
+        <a href="#kpi-heading" class="text-indigo-600 hover:text-indigo-800 font-medium">Back to Top ↑</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
